@@ -1,0 +1,33 @@
+/* #login-container {
+    background-color:#D7D6D7;
+} */
+
+#login-left {
+    padding-top: 5%;
+    background-color:#D7D6D7;
+}
+
+#login-right {
+    background-color:#D7D6D7;
+}
+
+/* -------------------------------- Sign up -------------------------------- */
+#title{
+    background-color:#D7D6D7;
+}
+
+#signup-container{
+    border: 1px solid #D7D6D7;
+}
+
+#b-container{
+    background-color:#D7D6D7;
+}
+
+/* 
+#btn-form{
+    background-color:#D7D6D7;
+}
+#btn-form:hover{
+    background-color:rgb(231, 135, 24);
+} */

@@ -1,0 +1,122 @@
+<!-- <h1>SIGN UP</h1> -->
+
+<!-- {{ error }}
+<form method="POST" action="{% url 'signup' %}">
+    {% csrf_token %}
+    Username:
+    <br />
+    <input type="text" name="username" />
+    <br />
+    Password:
+    <br />
+    <input type="password" name="password1" />
+    <br />
+    Confirm Password:
+    <br />
+    <input type="password" name="password2" />
+    <br />
+    <br />
+    <input type="submit" value="Sign Up!" />
+    <br />
+</form> -->
+
+{%  load staticfiles %}
+<!-- {% load static %} -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>IQA for kmitl</title>
+
+    <link rel="stylesheet" href="{%  static "css/account.css" %}">
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}"> -->
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+</head>
+
+<br /><br /><br />
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            &emsp; &emsp;
+        </div>
+
+        <div class="col-md-8">
+
+            <div class="row">
+                <div id="title" class="col-md-6 text-center">
+                    <!-- <br /> -->
+                    <h2>Sign up</h2>
+                </div>
+            </div>
+
+            <div class="row">
+                <div id="signup-container" class="col-md-6">
+                    {{ error }}
+                    <form class="text h5" method="POST" action="{% url 'signup' %}">
+                        {% csrf_token %}
+                        <br />
+                        <!-- <h2>Sign up</h2> -->
+                        Username:
+                        <br />
+                        <!-- <input type="text" name="username" /> -->
+                        <div class="md-form mt-1 mb-2">
+                            <input class="form-control col-md-8" name="username" type="text"
+                                placeholder="Enter Username" aria-label="Search">
+                        </div>
+                        Password:
+                        <br />
+                        <!-- <input type="password" name="password1" /> -->
+                        <div class="md-form mt-1 mb-2">
+                            <input class="form-control col-md-8" name="password1" type="password"
+                                placeholder="Enter Password" aria-label="Search">
+                        </div>
+                        Confirm Password:
+                        <br />
+                        <!-- <input type="password" name="password2" /> -->
+                        <div class="md-form mt-1 mb-2">
+                            <input class="form-control col-md-8" name="password2" type="password"
+                                placeholder="Enter Password" aria-label="Search">
+                        </div>
+                        <br />
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div id="b-container" class="col-md-6 text-center">
+                    <!-- <br /> -->
+                    <!-- <input type="submit" value="Sign Up!" /> -->
+                    <input id="btn-form" class="btn btn-outline-success col-md-4" type="submit" value="SIGN UP" />
+                    <br />
+                    </form>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+<!-- <div class="container">
+    <div class="col">
+        <div class="row">
+            <h1></h1>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+        </div>
+    </div> -->
+    <!--
+        <div class="col">
+            <div class="row">
+                    <form method="GET" action="{% url 'all_assessment' %}" class="btn btn-dark col-md-6"><button type="submit" class="border-0 col-md-12 btn-dark">Past Assessments</button></form>
+                    <form method="GET" action="{% url 'all_committee' %}" class="btn btn-dark col-md-6"><button type="submit" class="border-0 col-md-12 btn-dark">IQA Committee List</button></form>
+            </div>
+    
+            <div class="row">
+                    <form method="GET" action="{% url 'all_assessment' %}" class="btn btn-dark col-md-6"><button class="border-0 col-md-12 btn-dark" type="submit" >temp</button></form>
+                    <form method="GET" action="{% url 'all_assessment' %}" class="btn btn-dark col-md-6"><button class="border-0 col-md-12 btn-dark" type="submit">temp</button></form>
+            </div>
+        </div>
+        !-->
+    <!-- <div class="col">
+        <div class="row">
+            <a href="{% url 'all_assessment' %}" class="text-white btn btn-danger col-md-6"><br /><b>Assessment Results</b></a>
+            <a href="{% url 'all_committee' %}" class="text-white btn btn-warning col-md-6"><br /><b>Committee List</b></a>
+        </div>
+
+        <div class="row">
+            <a href="{% url 'all_assessment' %}" class="btn btn-secondary col-md-6"><br /><b>Committee Schedule</b></a>
+            <a href="{% url 'all_assessment' %}" class="btn btn-secondary col-md-6"><br /><b>TEMP</b></a>
+        </div>
+    </div>
+    <div class="col"></div>
+
+</div> -->
+
+<div class="container">
+        <br /><br />
+        <div class="col">
+                <a class="btn col-md-1"><br /><b></b></a>
+                <a class="btn col-md-0.5"><br /><b></b></a>
+    
+            <a id="AssessmentResults-btn" class="btn col-md-2" href="{% url 'all_assessment' %}">
+                <br /><b>Assessment Results<br />___________________</b></a>
+    
+            <a class="btn col-md-0.5"><br /><b></b></a>
+    
+            <a id="CommitteeList-btn" class="btn col-md-2" href="{% url 'all_committee' %}">
+                <br /><b>Committee List<br />___________________</b></a>
+    
+                <a class="btn col-md-0.5"><br /><b></b></a>
+    
+            <a id="CommitteeSchedule-btn" class="btn col-md-2" href="{% url 'all_assessment' %}">
+                <br /><b>Committee Schedule<br />___________________</b></a>
+    
+                <a class="btn col-md-0.5"><br /><b></b></a>
+    
+            <a id="TEMP-btn" class="btn col-md-2" href="{% url 'all_assessment' %}">
+                <br /><b>TEMP<br />___________________</b></a>
+    
+                <a class="btn col-md-0.5"><br /><b></b></a>
+        </div>
+    </div>
+
+{% endblock %}
