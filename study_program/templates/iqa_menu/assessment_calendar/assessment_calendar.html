@@ -1,0 +1,125 @@
+<!--ASSESSMENT CALENDAR-->
+
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+<br />
+<br />
+
+<div class="container">
+
+    <div id="calendar-container" class="container text-center">
+        <br />
+        <div class="col">
+            <div class="row">
+
+                <div class="col">
+                    <a id="angle-double-icon" href="{% url 'assessment_calendar' prev_month prev_year %}"
+                        style="text-align: right;">
+                        <i class="fas fa-angle-double-left fa-2x"></i>
+                    </a>
+
+                    <h2 style="text-align: center; width:40%; display: inline-block;">
+                        {{month_name}} {{year}}
+                    </h2>
+
+                    <a id="angle-double-icon" href="{% url 'assessment_calendar' next_month next_year %}"
+                        style="text-align: left;">
+                        <i class="fas fa-angle-double-right fa-2x"></i>
+                    </a>
+                </div>
+
+                {% if is_conflict == True %}
+                <a href="{% url 'view_conflict_detail' %}">
+                    <i id="exclamation-circle-icon" class="fas fa-exclamation-circle fa-3x"></i></a>
+                {% endif %}
+
+            </div>
+        </div>
+        <br />
+    </div>
+
+    <div id="calendar-table-container" class="container">
+
+            <div class="row">
+                {% for date in date_name %}
+                <div class="col text-center">
+                    <h5 class="date_name-btn">{{date}}</h5>
+                </div>
+                {% endfor %}
+            </div>
+
+            {% for week in day_in_month %}
+                <div class="row">
+                {% for day in week %} 
+                    <div class="col"> 
+                    {% if day == 0 %}
+                    <button class="btn" disabled>&nbsp;</button>
+                    {% else %}
+                        {% if day in have_appointment_in_morning_list and day in have_appointment_in_afternoon_list %}
+                            {% if day in conflict_date_list %}
+                                <a class="btn" href="{% url 'assessment_calendar_detail' day month year %}">
+                                    <i id="exclamation-icon" class="fas fa-exclamation"></i>
+                                    {{day}}
+                                    <i id="mor_af-circle-icon" class="fas fa-circle"></i>
+                                </a> <!-- CONFLICT: both morning afternoon appointment -->
+                            {% else %}
+                                <a class="btn" href="{% url 'assessment_calendar_detail' day month year %}">
+                                    {{day}}
+                                    <i id="mor_af-circle-icon" class="fas fa-circle"></i>
+                                </a> <!-- both morning afternoon appointment -->
+                            {% endif %}
+                        {% else %}
+                            {% if day in have_appointment_in_afternoon_list %}
+                                {% if day in conflict_date_list %}
+                                    <a class="btn" href="{% url 'assessment_calendar_detail' day month year %}">
+                                        <i id="exclamation-icon" class="fas fa-exclamation"></i>
+                                        {{day}}
+                                        <i id="af-circle-icon" class="fas fa-circle"></i>
+                                    </a> <!-- CONFLICT: afternoon appointment -->
+                                {% else %}
+                                    <a class="btn" href="{% url 'assessment_calendar_detail' day month year %}">
+                                        {{day}}
+                                        <i id="af-circle-icon" class="fas fa-circle"></i>
+                                    </a> <!-- afternoon appointment -->
+                                {% endif %}
+                            {% else %} 
+                                {% if day in have_appointment_in_morning_list %}
+                                    {% if day in conflict_date_list %}
+                                        <a class="btn" href="{% url 'assessment_calendar_detail' day month year %}">
+                                            <i id="exclamation-icon" class="fas fa-exclamation"></i>
+                                            {{day}}
+                                            <i id="mor-circle-icon" class="fas fa-circle"></i>
+                                        </a> <!-- CONFLICT: morning appointment -->
+                                    {% else %}
+                                        <a class="btn" href="{% url 'assessment_calendar_detail' day month year %}">
+                                            {{day}}
+                                            <i id="mor-circle-icon" class="fas fa-circle"></i>
+                                        </a> <!-- morning appointment -->
+                                    {% endif %}
+                                {% else %}
+                                    <a class="btn" href="{% url 'assessment_calendar_detail' day month year %}">{{day}}</a> <!-- NO appointment -->
+                                {% endif %} 
+                            {% endif %} 
+                        {% endif %}
+                    {% endif %}    
+                    </div>  
+                {% endfor %}
+                </div>
+            {% endfor %}
+
+        </div>
+
+    
+    <i id="mor_af-circle-icon" class="fas fa-circle"></i>&nbsp;Both morning and afternoon appointment&emsp;
+    <i id="mor-circle-icon" class="fas fa-circle"></i>&nbsp;Morning appointment&emsp;
+    <i id="af-circle-icon" class="fas fa-circle"></i>&nbsp;Afternoon appointment&emsp;
+    <i id="exclamation-icon" class="fas fa-exclamation"></i>&nbsp;CONFLICT appointment
+
+</div>
+
+{% endblock %}

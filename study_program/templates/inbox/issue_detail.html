@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+
+    <br />
+    <br />
+    
+    <div id="issue_detail-container" class="container">
+        <br />
+        <div class="col">
+            <div class="row">
+                <h2>&nbsp;Topic: {{ detail.topic }}&nbsp;</h2> 
+                <a href="{% url 'edit_issue' issue_id %}" id="EditIssue-btn"><h5>[Edit Issue]</h5></a>
+                <div class="ml-auto">
+                    <form method="GET" action="{% url 'create_comment' issue_id %}">
+                        <button id="ExportCSV-btn" type="submit" class="btn mr-3">Reply</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-1.5 ml-3"><h3>&nbsp;Content:</h3></div>
+                <div class="col-md-10">
+                    <h3>{{ detail.content }}</h3>
+                </div>
+        </div>
+    </div>
+
+    <nav id="issue_detail-container" class="navbar navbar-expand-lg">
+        <div class="col">
+            <div class="row">
+                <div class="col-md-7"><h5>Form: {{ detail.sender }}</h5></div>
+                <div class="col-md-3" style="text-align: right;">
+                    <h5>Date: {{ detail.sending_time.date.day }}/{{ detail.sending_time.date.month }}/{{ detail.sending_time.date.year }}</h5></div>
+                <div class="col-md-2"><h5>Time: {{ detail.sending_time.time }}</h5></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- COMMENT LIST -->
+    {% for comment in comments %}
+        {% if comment.sender == user %}
+        <div id="comment-container-user" class="container">
+            <div class="col">
+                <div class="row">
+                    <div class="col-md-6"><h5>Reply:  {{ comment.content }}</h5></div>
+                    <div class="col-md-6" style="text-align: right;">
+                        [<a href="{% url 'edit_comment' issue_id comment.id %}">edit</a>]</div>
+                </div> 
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col-md-8"><h6>&emsp;&emsp;&emsp;&emsp;Form: {{ comment.sender }}</h6></div>
+                    <div class="col-md-4" style="text-align: right;">
+                        <h6>Date: {{ detail.sending_time.date.day }}/{{ detail.sending_time.date.month }}/{{ detail.sending_time.date.year }}
+                            &emsp;Time: {{ detail.sending_time.time }}</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% else %}
+            <div id="comment-container-notuser" class="container">
+                <div class="col">
+                    <div class="row">
+                        <div class="col-md-6"><h5>Reply:  {{ comment.content }}</h5></div>
+                    </div> 
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <div class="col-md-8"><h6>&emsp;&emsp;&emsp;&emsp;Form: {{ comment.sender }}</h6></div>
+                        <div class="col-md-4" style="text-align: right;">
+                            <h6>Date: {{ detail.sending_time.date.day }}/{{ detail.sending_time.date.month }}/{{ detail.sending_time.date.year }}
+                                &emsp;Time: {{ detail.sending_time.time }}</h6>
+                            <!-- <h6>Date: {{ comment.sending_time.date.day }}/{{ comment.sending_time.date.month }}/{{ comment.sending_time.date.year }}
+                                &emsp;Time: {{ comment.sending_time.time }}</h6> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+        {% endif %}
+        
+            
+    {% endfor %}
+
+</div>
+
+{% endblock %}
+
+
+<!-- 
+<br/>
+
+<a href="{% url 'edit_issue' issue_id %}"><h3>Edit Issue</h3></a>
+
+<h1> {{ detail.topic }} </h1>
+<h3>{{ detail.content }} <h3/>
+
+<hr/>
+<h2>Comment</h2>
+<hr/>
+<br/>
+{% for comment in comments %}
+    {% if comment.sender == user %}
+        <h5>{{ comment.content }}[<a href="{% url 'edit_comment' issue_id comment.id %}">edit</a>]</h5>
+    {% else %}
+        <h5>{{ comment.content }}</h5>
+    {% endif %}
+{% endfor %}
+
+<a href="{% url 'create_comment' issue_id %}"><h3>Reply</h3></a> -->

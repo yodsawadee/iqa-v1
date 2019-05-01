@@ -20,7 +20,7 @@
                 <!-- EDIT -->
                 <div class="ml-auto">
                     <form method="GET" action="{% url 'edit_professor_profile' professor_id %}">
-                        <button type="submit" class="btn btn-outline-success">Edit Profile</button>
+                        <button id="EditProfile-btn" type="submit" class="btn btn-outline-success">Edit Profile</button>
                     </form>
                 </div>
                 {% else %}
@@ -34,16 +34,14 @@
 
     <!-- BASIC INFO -->
     <div id="basic_info-container" class="container">
-        <!-- <div class="col text-center">
-            <h1>PROFILE</h1>
-        </div> -->
         <div class="row">
             <div class="col-md-10">
-                <h5>code: {{ professor_profile.professor_id }}</h5>
-                <h5>university: {{ professor_profile.university }}</h5>
-                <!--<h5>date of birth: {{ professor_profile.date_of_birth }}</h5>-->
-                <h5>email: {{ professor_profile.email }}</h5>
-                <h5>tel: {{ professor_profile.phone }}</h5>
+                <h5><b style="color:black;">Code:</b> {{ professor_profile.professor_id }}</h5>
+                <h5><b style="color:black;">University:</b> {{ professor_profile.university }}</h5>
+                <h5><b style="color:black;">Date of birth:</b> {{ professor_profile.date_of_birth }}</h5>
+                <h5><b style="color:black;">Email:</b> {{ professor_profile.email }}</h5>
+                <h5><b style="color:black;">Tel:</b> {{ professor_profile.phone }}</h5>
+
             </div>
             <div class="ml-auto mr-3">
                 <a class="btn btn-outline-success" href="{{ program_detail.pdf_docs.url }}">docs</a>
@@ -84,7 +82,6 @@
         </div>
 
         <br />
-        <!--<a class="nav-item nav-link" href="{{ program_detail.pdf_docs.url }}">docs</a>-->
     </div>
 
     <!-- RESPONSIBLE PROGRAM -->

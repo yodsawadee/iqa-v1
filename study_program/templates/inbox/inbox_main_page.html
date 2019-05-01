@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="container">
+
+    <br />
+    <br />
+    <!-- PROGRAM LIST HEADER -->
+    <div id="inbox_main_page-container" class="container">
+        <br />
+        <div class="col">
+            <div class="row">
+                <div class="col-md-8 mr-4">
+                    <h1>Inbox</h1>
+                </div>
+            
+                 <!-- CREATE AVAILABLE DATE -->
+                <div class="ml-auto">
+                    <form method="GET" action="{% url 'create_issue'  %}">
+                        <button id="AddAvailableDate-btn" type="submit" class="btn btn-outline-success">Create Issue</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+        <br />
+    </div>
+
+    <div id="inbox_main_page-container-nav" class="container">
+        <div class="row">
+            <div class="col-md-3"><h5>Date &emsp;&emsp; Time </h5></div>
+            <div class="col-md-2"><h5>From</h5></div>
+            <div class="col-md-4"><h5>Topic</h5></div>
+        </div>
+    </div>
+
+    <div class="bg-light">
+        <ul class="list-group">
+
+            <!-- if (user  == admin or user == thisisadmin):
+                for issue in issue_lilst:
+                    print(issue)
+            else:
+                for issue in issue_list:
+                    if(issue.sender == user):
+                        print(issue) -->
+            
+            {% if user == "admin" or user == "thisisadmin" %}
+                {% for issue in issue_list %}
+                <a class="list-group-item list-group-item-light bg-light" href="{% url 'issue_detail' issue.id %}">
+                    <div class="row">
+                        <div class="col-md-1"><h6>{{ issue.sending_time.date.day }}/{{ issue.sending_time.date.month }}/{{ issue.sending_time.date.year }}</h6></div>
+                        <div class="col-md-2"><h6>{{ issue.sending_time.time }}</h6></div>
+                        <div class="col-md-2"><h6>{{ issue.sender }}</h6></div>
+                        <div class="col-md-4"><h6>{{ issue.topic }}</h6></div>
+                        <div class="col-md-3" style="text-align: right; display: inline-block;">
+                            <i id="angle-right-icon" class="fas fa-angle-right"></i>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            {% else %}
+                {% for issue in issue_list %}
+                    {% if user == issue.sender %}
+                    <a class="list-group-item list-group-item-light bg-light" href="{% url 'issue_detail' issue.id %}">
+                        <div class="row">
+                            <div class="col-md-1"><h6>{{ issue.sending_time.date.day }}/{{ issue.sending_time.date.month }}/{{ issue.sending_time.date.year }}</h6></div>
+                            <div class="col-md-2"><h6>{{ issue.sending_time.time }}</h6></div>
+                            <div class="col-md-2"><h6>{{ issue.sender }}</h6></div>
+                            <div class="col-md-4"><h6>{{ issue.topic }}</h6></div>
+                            <div class="col-md-3" style="text-align: right; display: inline-block;">
+                                <i id="angle-right-icon" class="fas fa-angle-right"></i>
+                            </div>
+                        </div>
+                    </a>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+
+        </ul>
+    </div>
+
+
+    <div id="committee_appointment-container" class="container text-center">
+        <div class="btn-group" role="group" aria-label="Basic example">
+        
+            <div class="pagination">
+
+                {% if issue_list.has_previous %}
+                <a class="pagination-action" href="?page=1">
+                    <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                </a>
+                <a class="pagination-action" href="?page={{ issue_list.previous_page_number }}">
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                </a>
+                {% endif %}
+
+                {% for num in issue_list.paginator.page_range %}
+
+                {% if issue_list.number == num %}
+                <span class="pagination-number pagination-current">{{ num }}</span>
+                {% elif num > issue_list.number|add:'-3' and num < issue_list.number|add:'3' %}
+                <a class="pagination-number" href="?page={{ num }}">{{ num }}</a>
+                {% endif %}
+
+                {% endfor %}
+
+                {% if issue_list.has_next %}
+                <a class="pagination-action" href="?page={{ issue_list.next_page_number }}">
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+                <a class="pagination-action" href="?page={{ issue_list.paginator.num_pages }}">
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                </a>
+                {% endif %}
+                <br />
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+</div>
+{% endblock %}
+
+<!-- 
+<h1>Inbox</h1>
+
+<br/>
+<br/>
+<a href="{% url 'create_issue'  %}">
+        <h3>Create Issue</h3>
+</a>
+<br/>
+<br/>
+{% for issue in issue_list %}
+    <a href="{% url 'issue_detail' issue.id %}">
+        {% if user == 'admin' %}
+            <h6>{{ issue.sending_time}} : {{ issue.topic }}</h6>
+        {% elif user == issue.sender %}
+            <h6>{{ issue.sending_time}} : {{ issue.topic }}</h6>
+        {% endif %}
+    </a>
+{% endfor %} -->

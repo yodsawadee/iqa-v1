@@ -1,5 +1,4 @@
 {%  load staticfiles %}
-<!-- {% load static %} -->
 
 <!DOCTYPE html>
 <html>
@@ -16,20 +15,36 @@
     <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}"> -->
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-        crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    <!-- <link rel="stylesheet" href="{% static 'bootstrap-4.2.1/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap-4.2.1/js/bootstrap.min.js' %}">
+
+    <link rel="stylesheet" href="{% static 'fontawesome-5.7.1/css/all.css' %}"> -->
+
+    <!--   <link rel="stylesheet" href="{% static 'bootstrap-4.2.1/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap-4.2.1/css/bootstrap.min.css' %}"> -->
+
+    <!-- Bootstrap core CSS URL -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
         crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
         crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
-        crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
 </head>
 
+<!-- <body id="login-bg" style="background-image: url('{% static "images/dino-reichsmuth.jpg" %}');"> -->
+<body id="login-bg" style="background-image: url('{% static "images/3.jpg" %}');">
+<!-- <body id="login-bg"> -->
 
 <br /><br /><br /><br />
 
@@ -42,92 +57,52 @@
         <div id="login-container" class="col-md-8">
             <div class="row">
                 <div id="login-left" class="col-md-6">
-                    <br /><br />
-                    <h5 class="text">&emsp;An Application for<br /> </h5>
-                    <h3 class="text">&nbsp;&nbsp;<strong>IQA System</strong><br /> </h3>
-                    <h6 class="text">&emsp;Assessors Matching & <br /> &emsp;Assessment Scheduling</h6>
+                    <div class="col-md-10 ml-auto">
+                        <br /><br />
+                        <h5 class="text">An Application for<br /> </h5>
+                        <h3 class="text"><strong>IQA System</strong><br /> </h3>
+                        <h6 class="text">Assessors Matching & <br /> Assessment Scheduling</h6>
 
-                    <br /><br /><br />&emsp;
-                    <a class="text active" href="{% url 'login' %}">Forgot Password?</a>
+                        <br /><br /><br />
+                        <a class="text active" href="{% url 'login' %}">Forgot Password?</a>
+                    </div>
+
                 </div>
 
                 <div id="login-right" class="col-md-6">
-                    &emsp; &emsp;
-                    {{ error }}
-                    <form class="text h5" method="POST" action="{% url 'login' %}">
-                        {% csrf_token %}
-                        <br />
-                        <h2>Log in</h2>
-                        Username:
-                        <br />
-                        <!-- <input class="col-md-8" type="text" name="username" /> -->
-                        <div class="md-form mt-1 mb-2">
-                            <input class="form-control col-md-8" name="username" type="text" placeholder="Enter Username"
-                                aria-label="Search">
-                        </div>
-                        Password:
-                        <br />
-                        <!-- <input class="col-md-8" type="password" name="password" /> -->
-                        <div class="md-form mt-1 mb-2">
-                            <input class="form-control col-md-8" name="password" type="password" placeholder="Enter Password"
-                                aria-label="Search">
-                        </div>
-                        <br />
-                        <input class="btn btn-outline-success col-md-4 mr-2" type="submit" value="LOGIN" />
 
-                        <br />
-                    </form>
+                    <div class="col-md-12 ml-auto">
+                        &emsp; &emsp;
+                        {{ error }}
+                        <form class="text h5" method="POST" action="{% url 'login' %}">
+                            {% csrf_token %}
+                            <br />
+                            <h2>Log in</h2>
+                            Username:
+                            <br />
+                            <div class="md-form mt-1 mb-2">
+                                <input class="form-control col-md-8" name="username" type="text"
+                                    placeholder="Enter Username" aria-label="Search">
+                            </div>
+                            Password:
+                            <br />
+                            <div class="md-form mt-1 mb-2">
+                                <input class="form-control col-md-8" name="password" type="password"
+                                    placeholder="Enter Password" aria-label="Search">
+                            </div>
+                            <br />
+                            <input class="btn btn-outline-success col-md-4 mr-2" type="submit" value="LOGIN" />
 
-                    <a class="text active" href="{% url 'signup' %}">SIGN UP</a>
-                    <!-- <form method="GET" action="{% url 'signup' %}">
-                        <button type="submit" class="btn btn-outline-success col-4">SIGN UP</button>
-                    </form> -->
-                    <br /><br />
+                            <br />
+                        </form>
+
+                        <a class="text active" href="{% url 'signup' %}">SIGN UP</a>
+                        <br /><br />
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-
-<!-- <div class="container border border-dark bg-dark">
-    <br />
-    <br />
-    <br />
-    <br />
-    <h2 class="text-center text-white">Assessors Matching and Assessment Scheduling:<br /> An Application for IQA
-        System</h2>
-    <br />
-    <br />
-
-    {{ error }}
-    <form class="text-center text-white h5" method="POST" action="{% url 'login' %}">
-        {% csrf_token %}
-        Username:
-        <br />
-        <input class="col-md-6" type="text" name="username" />
-        <br />
-        <br />
-        Password:
-        <br />
-        <input class="col-md-6" type="password" name="password" />
-        <br />
-        <br />
-        <br />
-        <input class="btn btn-light col-md-4" type="submit" value="LOGIN" />
-    </form>
-
-    <div class="text-center">
-        <form method="GET" action="{% url 'signup' %}" class="btn bg-white col-md-4">
-            <button type="submit" class="border-0 col-md-12 bg-white">SIGN UP</button>
-        </form>
-    </div>
-
-    </form>
-
-    <br />
-    <br />
-
-</div>
-
-</div> -->
+</body>

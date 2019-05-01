@@ -13,13 +13,12 @@
             <div class="row">
                 {% if request.user.is_superuser %}
                 <div class="col-md-10 mr-2">
-                    <!-- <h3>{{ program_detail.name }} : {{ program_detail.program_status }}</h3> -->
                     <h3>{{assessment_result.year}} : {{ assessment_result.program_id }}</h3>
                 </div>
                 <!-- EDIT -->
                 <div class="ml-auto">
                     <form method="GET" action="{% url 'edit_assessment_result' assessment_id %}">
-                        <button type="submit" class="btn btn-outline-success">Edit Profile</button>
+                        <button id="EditProfile-btn" type="submit" class="btn btn-outline-success">Edit Profile</button>
                     </form>
                 </div>
                 {% else %}
@@ -33,9 +32,6 @@
 
     <!-- BASIC INFO -->
     <div id="basic_info-container" class="container">
-        <!-- <div class="col text-center">
-                <h1>PROFILE</h1>
-            </div> -->
         <div class="row">
             <div class="col-md-10">
                 <h5>code: {{ assessment_result.code }}</h5>

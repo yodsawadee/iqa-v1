@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="container">
+
+    <br />
+    <br />
+
+    <div id="notice-container" class="container">
+        <br />
+        <div class="col">
+            <div class="row">
+                <div class="col-md-8 mr-4">
+                    <h1>Notice</h1>
+                </div>
+
+            </div>
+        </div>
+        <br />
+    </div>
+
+    <div class="bg-light">
+        <ul class="list-group">
+            {% for notify in notify_not_enough_rp %}
+                <a class="list-group-item list-group-item-light bg-light" href="{% url 'program_detail' notify.id %}">
+                    
+                    <h6 style="text-align: left; width:98%; display: inline-block;">
+                        Not enough responsible professor: {{notify.name}}
+                    </h6>
+                    <h6 style="text-align: right; display: inline-block;">
+                        <i id="angle-right-icon" class="fas fa-angle-right"></i>
+                    </h6>
+                
+                </a>
+            {% endfor %}
+
+        </ul>
+    </div>
+
+
+    <div id="notice-container" class="container text-center">
+        <div class="btn-group" role="group" aria-label="Basic example">
+        
+            <div class="pagination">
+
+                {% if notify_not_enough_rp.has_previous %}
+                <a class="pagination-action" href="?page=1">
+                    <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                </a>
+                <a class="pagination-action" href="?page={{ notify_not_enough_rp.previous_page_number }}">
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                </a>
+                {% endif %}
+
+                {% for num in notify_not_enough_rp.paginator.page_range %}
+
+                {% if notify_not_enough_rp.number == num %}
+                <span class="pagination-number pagination-current">{{ num }}</span>
+                {% elif num > notify_not_enough_rp.number|add:'-3' and num < notify_not_enough_rp.number|add:'3' %}
+                <a class="pagination-number" href="?page={{ num }}">{{ num }}</a>
+                {% endif %}
+
+                {% endfor %}
+
+                {% if notify_not_enough_rp.has_next %}
+                <a class="pagination-action" href="?page={{ notify_not_enough_rp.next_page_number }}">
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+                <a class="pagination-action" href="?page={{ notify_not_enough_rp.paginator.num_pages }}">
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                </a>
+                {% endif %}
+                <br />
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+</div>
+{% endblock %}
+
+
+<!-- 
+NOTICE
+
+{% for notify in notify_not_enough_rp %}
+    <h3>Not enough responsible professor: {{notify.name}}</h3>
+{% endfor %} -->

@@ -1,5 +1,6 @@
 from django import forms
-from .models import StudyProgram, Professor, AssessmentResult, Committee, AUN
+from .models import StudyProgram, Professor, AssessmentResult, Committee, AUN, Issue, Comment
+from .models import AvailableTime
 
 class StudyProgramForm(forms.ModelForm):
     class Meta:
@@ -45,3 +46,28 @@ class AunForm(forms.ModelForm):
             'criteria7', 'criteria8', 'criteria9', 'criteria10', 'criteria11', 'total_score',
 
         ]
+
+
+class AvailableTimeForm(forms.ModelForm):
+    class Meta:
+         model = AvailableTime
+         fields = ['appointment_date','available_in_morning','available_in_afternoon','appointed_committee','appointed_program','user']
+         widgets = {'user': forms.HiddenInput()}
+        
+
+class IssueForm(forms.ModelForm):
+    class Meta:
+        model = Issue
+        fields = [
+            'receiver', 'sender', 'sending_time', 'topic', 'content'
+        ]
+        widgets = {'sender':forms.HiddenInput(), 'receiver':forms.HiddenInput()}
+        #sending time shold disable
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = [
+            'comment_for', 'content', 'sender'
+        ]
+        widgets = {'comment_for':forms.HiddenInput(), 'sender':forms.HiddenInput()}

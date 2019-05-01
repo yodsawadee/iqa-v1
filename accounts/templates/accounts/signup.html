@@ -1,27 +1,4 @@
-<!-- <h1>SIGN UP</h1> -->
-
-<!-- {{ error }}
-<form method="POST" action="{% url 'signup' %}">
-    {% csrf_token %}
-    Username:
-    <br />
-    <input type="text" name="username" />
-    <br />
-    Password:
-    <br />
-    <input type="password" name="password1" />
-    <br />
-    Confirm Password:
-    <br />
-    <input type="password" name="password2" />
-    <br />
-    <br />
-    <input type="submit" value="Sign Up!" />
-    <br />
-</form> -->
-
 {%  load staticfiles %}
-<!-- {% load static %} -->
 
 <!DOCTYPE html>
 <html>
@@ -66,7 +43,6 @@
 
             <div class="row">
                 <div id="title" class="col-md-6 text-center">
-                    <!-- <br /> -->
                     <h2>Sign up</h2>
                 </div>
             </div>
@@ -77,24 +53,20 @@
                     <form class="text h5" method="POST" action="{% url 'signup' %}">
                         {% csrf_token %}
                         <br />
-                        <!-- <h2>Sign up</h2> -->
                         Username:
                         <br />
-                        <!-- <input type="text" name="username" /> -->
                         <div class="md-form mt-1 mb-2">
                             <input class="form-control col-md-8" name="username" type="text"
                                 placeholder="Enter Username" aria-label="Search">
                         </div>
                         Password:
                         <br />
-                        <!-- <input type="password" name="password1" /> -->
                         <div class="md-form mt-1 mb-2">
                             <input class="form-control col-md-8" name="password1" type="password"
                                 placeholder="Enter Password" aria-label="Search">
                         </div>
                         Confirm Password:
                         <br />
-                        <!-- <input type="password" name="password2" /> -->
                         <div class="md-form mt-1 mb-2">
                             <input class="form-control col-md-8" name="password2" type="password"
                                 placeholder="Enter Password" aria-label="Search">
@@ -106,16 +78,11 @@
 
             <div class="row">
                 <div id="b-container" class="col-md-6 text-center">
-                    <!-- <br /> -->
-                    <!-- <input type="submit" value="Sign Up!" /> -->
                     <input id="btn-form" class="btn btn-outline-success col-md-4" type="submit" value="SIGN UP" />
                     <br />
                     </form>
                 </div>
             </div>
-
-
-
         </div>
     </div>
 </div>

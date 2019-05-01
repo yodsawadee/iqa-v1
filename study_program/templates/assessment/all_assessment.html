@@ -18,14 +18,14 @@
                 </div>
 
                 <div class="ml-auto">
-                    <form method="GET" action="{% url 'all_program' current_page %}">
-                        <button id="ExportCSV-btn" type="submit" class="btn btn-outline-success mr-4 ml-4">Export CSV</button>
+                    <form method="GET" action="{% url 'export_assessment_csv' %}">
+                        <button id="ExportCSV-btn" type="submit" class="btn mr-4 ml-4">Export CSV</button>
                     </form>
                 </div>
 
                 <!-- CREATE ASSESSMENT -->
                 <form method="GET" action="{% url 'create_assessment_result' %}">
-                    <button type="submit" class="btn btn-outline-success">Add Assessment</button>
+                    <button id="Add-btn" type="submit" class="btn">Add Assessment</button>
                 </form>
                 {% else %}
                 <div class="col-md-10 mr-4">
@@ -33,7 +33,7 @@
                 </div>
 
                 <form method="GET" action="{% url 'all_program' current_page %}">
-                    <button id="ExportCSV-btn" type="submit" class="btn btn-outline-success ml-4">Export CSV</button>
+                    <button id="ExportCSV-btn" type="submit" class="btn ml-4">Export CSV</button>
                 </form>
                 {% endif %}
             </div>
@@ -72,15 +72,15 @@
         </div>
     </nav>
 
-    <br />
-
-
     <!-- PROFESSOR LIST -->
     <div class="bg-light">
         <ul class="list-group">
             {% for assessment in assessments %}
             <a class="list-group-item list-group-item-light bg-light" href="{% url 'assessment_result' assessment.id %}">
-                <h6>{{ assessment.year}} : {{ assessment.program_id }}
+                <h6 style="text-align: left; width:98%; display: inline-block;">
+                    {{ assessment.year}} : {{ assessment.program_id }}
+                </h6>
+                <h6 style="text-align: right; display: inline-block;">
                     <i id="angle-right-icon" class="fas fa-angle-right"></i>
                 </h6>
             </a>
@@ -90,11 +90,42 @@
     </div>
 
     <!-- CHANGE PAGE -->
-    <div id="all_assessment-container-3" class="container text-center">
+    <div id="all_professor-container-3" class="container text-center">
         <div class="btn-group" role="group" aria-label="Basic example">
-            <a class="btn" href="{% url 'all_assessment' prev_page %}">back</a>
-            <button type="button" class="btn">{{current_page}}</button>
-            <a class="btn" href="{% url 'all_assessment' next_page %}">next</a>
+
+            <div class="pagination">
+
+                {% if assessments.has_previous %}
+                <a class="pagination-action" href="?page=1">
+                    <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                </a>
+                <a class="pagination-action" href="?page={{ assessments.previous_page_number }}">
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                </a>
+                {% endif %}
+
+                {% for num in assessments.paginator.page_range %}
+
+                {% if assessments.number == num %}
+                <span class="pagination-number pagination-current">{{ num }}</span>
+                {% elif num > assessments.number|add:'-3' and num < assessments.number|add:'3' %}
+                <a class="pagination-number" href="?page={{ num }}">{{ num }}</a>
+                {% endif %}
+
+                {% endfor %}
+
+                {% if assessments.has_next %}
+                <a class="pagination-action" href="?page={{ assessments.next_page_number }}">
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+                <a class="pagination-action" href="?page={{ assessments.paginator.num_pages }}">
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                </a>
+                {% endif %}
+                <br />
+            </div>
+
+            <br />
         </div>
         <br />
     </div>

@@ -1,0 +1,66 @@
+{% extends 'included-library.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<br /><br /><br />
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">
+            &emsp; &emsp;
+        </div>
+
+        <div class="col-md-8">
+
+            <div class="row">
+                <div class="col-md-12 text-center" style="background-color:#D7D6D7;">
+                    <br />
+                    <h2>Edit Comment</h2>
+                    <br />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" style="background-color:#D7D6D7;">
+                    <h4>Topic: {{ comment.topic }}</h4>
+                    <h5>Content: {{ comment.content }}</h5>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12" style="border: 1px solid #D7D6D7;">
+                    {{ error }}
+                    <form method="POST" enctype="multipart/form-data">
+                        <br />
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <br />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 text-center" style="background-color:#D7D6D7;">
+                    <input class="btn btn-success col-2" type="submit" , value="Save" />
+                    
+                    </form>
+                </div>
+            </div>
+
+            <br />
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+<!-- <h5>{{ issue.topic}}</h5>
+<h4>{{ issue.content}}</h4>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit", value = "Save" />
+</form> -->
+

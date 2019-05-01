@@ -7,7 +7,8 @@ import datetime
 # https://stackoverflow.com/questions/4881578/django-bi-directional-manytomany-how-to-prevent-table-creation-on-second-model
 
 class Professor(models.Model):
-    professor_id = models.CharField(max_length = 200)
+    id = models.AutoField(primary_key=True)
+    professor_id = models.CharField(max_length = 200,blank=True)
     academic_title = models.CharField(max_length = 200)
     name_surname = models.CharField(max_length = 200)
     date_of_birth = models.DateField()
@@ -42,7 +43,8 @@ class Professor(models.Model):
 
 
 class StudyProgram(models.Model):
-    code = models.CharField(max_length=200)
+    id = models.AutoField(primary_key=True)
+    code = models.CharField(max_length=200,blank=True)
     name = models.CharField(max_length=200)
 
     status_choices = (
@@ -54,7 +56,7 @@ class StudyProgram(models.Model):
 
 
     degree_and_major = models.CharField(max_length=400)
-
+    #aee
 
     collaboration_choices = (
         ('Program issued specifically by KMITL', 'Program issued specifically by KMITL'),
@@ -72,6 +74,7 @@ class StudyProgram(models.Model):
 
 
 class Committee(models.Model):
+    id = models.AutoField(primary_key=True)
     code = models.CharField(max_length=200)
     professor_id = models.ForeignKey(Professor, on_delete=models.PROTECT, null=True)
 
@@ -95,6 +98,7 @@ class Committee(models.Model):
 
 
 class AssessmentResult(models.Model):
+    id = models.AutoField(primary_key=True)
     code = models.CharField(max_length=200)
     committee_id = models.ManyToManyField(Committee, through=Committee.assessment_programs.through, blank=True)
     program_id = models.ForeignKey(StudyProgram, on_delete=models.PROTECT, null=True)
@@ -122,8 +126,9 @@ class AssessmentResult(models.Model):
         return self.code
 
 class AUN(models.Model):
+    id = models.AutoField(primary_key=True)
     #assessment_id = models.ForeignKey(AssessmentResult, on_delete=models.PROTECT, null=True)
-    assessment_id = models.OneToOneField(AssessmentResult, on_delete=models.CASCADE, null=True)
+    assessment_id = models.ForeignKey(AssessmentResult, on_delete=models.PROTECT, null=True)
     #code = models.CharField(max_length=200)
     #assessment_id = models.ForeignKey(AssessmentResult, on_delete=models.PROTECT, null=True)
     criteria1 = models.IntegerField()
@@ -144,3 +149,39 @@ class AUN(models.Model):
         return str(self.assessment_id)
 
 
+
+class AvailableTime(models.Model):
+    id = models.AutoField(primary_key=True)
+    appointment_date = models.DateField(default=datetime.datetime.now())
+    #appointment_time = models.TimeField(default=datetime.datetime.now())
+
+    available_choice = (
+        ('yes', 'yes'),
+        ('no', 'no')
+    )
+    available_in_morning = models.CharField(max_length=400, choices = available_choice, default='no')
+    available_in_afternoon = models.CharField(max_length=400, choices = available_choice, default='no')
+
+    appointed_committee = models.ManyToManyField(Committee, blank=True)
+    appointed_program = models.ForeignKey(StudyProgram, on_delete=models.PROTECT, null=True)
+    user = models.CharField(max_length = 50)
+    '''
+    available_date = models.DateField()
+    available_in_morning = models.CharField(max_length = 50)
+    available_in_afternoon = models.CharField(max_length = 50)
+    user = models.CharField(max_length = 50)
+    '''
+
+
+class Issue(models.Model):
+    receiver = models.CharField(max_length=50)
+    sender = models.CharField(max_length=50)
+    sending_time = models.DateTimeField(default=datetime.datetime.now())
+    topic = models.CharField(max_length=50)
+    #centent will change to TextField
+    content = models.CharField(max_length=400)
+
+class Comment(models.Model):
+    comment_for = models.CharField(max_length=50)
+    sender = models.CharField(max_length=50)
+    content = models.CharField(max_length=400)

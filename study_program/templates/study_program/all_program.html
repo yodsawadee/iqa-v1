@@ -17,23 +17,23 @@
                 </div>
 
                 <div class="ml-auto">
-                    <form method="GET" action="{% url 'all_program' current_page %}">
-                        <button id="ExportCSV-btn" type="submit" class="btn btn-outline-success mr-4 ml-4">Export
-                            CSV</button>
+                    <form method="GET" action="{% url 'export_studyprogram_csv' %}">
+                        <button id="ExportCSV-btn" type="submit" class="btn mr-4 ml-4">Export CSV</button>
                     </form>
                 </div>
 
                 <!-- CREATE STUDY PROGRAM -->
                 <form method="GET" action="{% url 'create_study_program' %}">
-                    <button type="submit" class="btn btn-outline-success">Add Program</button>
+                    <button id="Add-btn" type="submit" class="btn">Add Program</button>
                 </form>
+
                 {% else %}
                 <div class="col-md-10 mr-4">
                     <h1>Study Program</h1>
                 </div>
 
                 <form method="GET" action="{% url 'all_program' current_page %}">
-                    <button id="ExportCSV-btn" type="submit" class="btn btn-outline-success ml-4">Export CSV</button>
+                    <button id="ExportCSV-btn" type="submit" class="btn ml-4">Export CSV</button>
                 </form>
                 {% endif %}
             </div>
@@ -53,15 +53,16 @@
                 <li id="faculties-nav-dropdown" class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Faculties
+                        คณะ
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         {% for key, value in faculties.items %}
-                        <a class="dropdown-item" href="{{key}}">{{ value }}</a>
+                            <a class="dropdown-item" href="{{key}}">{{ value }}</a>
                         {% endfor %}
                     </div>
                 </li>
 
+                
             </ul>
 
             <form class="form-inline my-2 my-lg-0" action="{% url 'all_program' current_page %}" method="get">
@@ -71,30 +72,24 @@
 
                     <input class="form-control col-md-12 mr-sm-2 ml-2" name="faculty_name" type="search"
                         placeholder="Search Program..." aria-label="Search" value={{request.GET.faculty_name}}>
+
                 </div>
                 <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
             </form>
         </div>
     </nav>
 
-    <br />
-
     <!-- PROGRAM LIST -->
     <div class="bg-light">
         <ul class="list-group">
             {% for program in studyPrograms %}
-            <a class="list-group-item list-group-item-light bg-light" href="{% url 'program_detail' program.id %}">
-                <!-- <h6>{{ program.code}} : {{ program.name }}
-                    <i id="angle-right-icon" class="fas fa-angle-right"></i>
-                </h6> -->
-
+            <a id="text-list" class="list-group-item list-group-item-light bg-light" href="{% url 'program_detail' program.id %}">
                 <h6 style="text-align: left; width:98%; display: inline-block;">
                     {{ program.code}} : {{ program.name }}
                 </h6>
                 <h6 style="text-align: right; display: inline-block;">
                     <i id="angle-right-icon" class="fas fa-angle-right"></i>
                 </h6>
-
             </a>
             {% endfor %}
         </ul>
@@ -103,39 +98,6 @@
     <!-- CHANGE PAGE -->
     <div id="all_program-container-3" class="container text-center">
         <div class="btn-group" role="group" aria-label="Basic example">
-            <!-- <a class="btn" href="{% url 'all_program' prev_two_page %}">back</a>
-            <a class="btn" href="{% url 'all_program' prev_page %}">back</a>
-            <button type="button" class="btn" href="{% url 'all_program' prev_page %}">{{prev_page}}</button>
-            <button type="button" class="btn">{{current_page}}</button>
-            <button type="button" class="btn" href="{% url 'all_program' next_page %}">{{next_page}}</button>
-            <a class="btn" href="{% url 'all_program' next_page %}">next</a>
-            <a class="btn" href="{% url 'all_program' next_two_page %}">next</a> -->
-
-
-            <!-- <ul class="pagination">
-                {% if studyPrograms.has_previous %}
-                <li><a href="?page={{ studyPrograms.previous_page_number }}">&laquo;</a></li>
-                {% else %}
-                <li class="disabled"><span>&laquo;</span></li>
-                {% endif %}
-                &emsp;
-
-                {% for i in studyPrograms.paginator.page_range %}
-                {% if studyPrograms.number == i %}
-                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-                {% else %}
-                <li><a href="?page={{ i }}">{{ i }}</a></li>
-                {% endif %}
-                &emsp;
-                {% endfor %}
-
-                {% if studyPrograms.has_next %}
-                <li><a href="?page={{ studyPrograms.next_page_number }}">&raquo;</a></li>
-                {% else %}
-                <li class="disabled"><span>&raquo;</span></li>
-                {% endif %}
-                &emsp;
-            </ul> -->
 
             <div class="pagination">
 

@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+
+    <br />
+    <br />
+
+    <div id="program_detail-container-title" class="container">
+        <br />
+        <div class="col">
+            <div class="row">
+            
+                <div class="col-md-10 mr-2">
+                    <h3>{{ program_detail.name }}</h3>
+                </div>
+                <!-- EDIT -->
+                <div class="ml-auto">
+                    <form method="GET" action="{% url 'edit_study_program' program_id %}">
+                        <button id="EditProfile-btn" type="submit" class="btn btn-outline-success">Edit Profile</button>
+                    </form>
+                </div>
+          
+            </div>
+        </div>
+    </div>
+
+    <!-- BASIC INFO -->
+    <div id="basic_info-container" class="container">
+        <div class="row">
+            <div class="col-md-10">
+                <h5>Code: {{ program_detail.code }}</h5>
+                <h5>Degree: {{ program_detail.degree_and_major }}</h5>
+                <h5>Collaboration: {{ program_detail.collaboration_with_other_institues }}</h5>
+                <h5>Program Status: {{ program_detail.program_status }}</h5>
+            </div>
+            <div class="ml-auto mr-3">
+                <a class="btn btn-outline-success" href="{{ program_detail.pdf_docs.url }}">docs</a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- RESPONSIBLE PROFESSOR -->
+    <div id="responsible_professor-container" class="container">
+        <div class="col">
+            <h4>Responsible Lecturer</h4>
+        </div>
+
+    </div>
+
+    <!-- RESPONSIBLE PROFESSOR LIST -->
+    <div class=bg-light>
+        <ul class="list-group">
+            {% for responsible_professor in professors %}
+            <a class="list-group-item list-group-item-light bg-light" href="{% url 'professor_profile' responsible_professor.id %}">
+                {{ responsible_professor.academic_title }} {{ responsible_professor.name_surname }}
+
+                <i id="angle-right-icon" class="fas fa-angle-right"></i>
+            </a>
+            {% endfor %}
+        </ul>
+    </div>
+
+
+    <!-- ASSESSMENT RESULT -->
+    <div id="assessment_result-container" class="container">
+        <div class="col">
+            <h4>Assessment Result</h4>
+        </div>
+
+    </div>
+
+    <!-- ASSESSMENT RESULT LIST -->
+    <div class=bg-light>
+        <ul class="list-group">
+            {% for assessment in assessment_list %}
+            <a class="list-group-item list-group-item-light bg-light" href="{% url 'assessment_result' assessment.id %}">
+                {{assessment.year}} : &emsp;&emsp;&emsp; {{ assessment.program_id }}
+
+                <i id="angle-right-icon" class="fas fa-angle-right"></i>
+            </a>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <br />
+    <br />
+
+
+</div>
+
+
+{% endblock %}

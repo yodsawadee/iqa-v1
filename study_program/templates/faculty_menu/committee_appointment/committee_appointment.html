@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="container">
+
+    <br />
+    <br />
+    <!-- PROGRAM LIST HEADER -->
+    <div id="committee_appointment-container" class="container">
+        <br />
+        <div class="col">
+            <div class="row">
+                <div class="col-md-8 mr-4">
+                    <h1>Committee Appointment</h1>
+                </div>
+            
+                 <!-- CREATE AVAILABLE DATE -->
+                <div class="ml-auto">
+                    <form method="GET" action="{% url 'create_committee_appointment' %}">
+                        <button id="AddAvailableDate-btn" type="submit" class="btn btn-outline-success">Add Available Date</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+        <br />
+    </div>
+
+
+    <!-- PROGRAM LIST -->
+    <div class="bg-light">
+        <ul class="list-group">
+            {% for available_time in available_time_for_user %}
+            <a class="list-group-item list-group-item-light bg-light" href="{% url 'edit_committee_appointment' available_time.id %}">
+                <h6 style="text-align: left; width:98%; display: inline-block;">
+                    {{available_time.appointment_date}} : {{ available_time.appointment_time}} : {{ available_time.appointed_program }}
+                </h6>
+                <h6 style="text-align: right; display: inline-block;">
+                    <i id="angle-right-icon" class="fas fa-angle-right"></i>
+                </h6>
+            </a>
+            {% endfor %}
+        </ul>
+    </div>
+
+
+    <div id="committee_appointment-container" class="container text-center">
+        <div class="btn-group" role="group" aria-label="Basic example">
+        
+            <div class="pagination">
+
+                {% if available_time_for_user.has_previous %}
+                <a class="pagination-action" href="?page=1">
+                    <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                </a>
+                <a class="pagination-action" href="?page={{ available_time_for_user.previous_page_number }}">
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                </a>
+                {% endif %}
+
+                {% for num in available_time_for_user.paginator.page_range %}
+
+                {% if available_time_for_user.number == num %}
+                <span class="pagination-number pagination-current">{{ num }}</span>
+                {% elif num > available_time_for_user.number|add:'-3' and num < available_time_for_user.number|add:'3' %}
+                <a class="pagination-number" href="?page={{ num }}">{{ num }}</a>
+                {% endif %}
+
+                {% endfor %}
+
+                {% if available_time_for_user.has_next %}
+                <a class="pagination-action" href="?page={{ available_time_for_user.next_page_number }}">
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+                <a class="pagination-action" href="?page={{ available_time_for_user.paginator.num_pages }}">
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                </a>
+                {% endif %}
+                <br />
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+</div>
+{% endblock %}

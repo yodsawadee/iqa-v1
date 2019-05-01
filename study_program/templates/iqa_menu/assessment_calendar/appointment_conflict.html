@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+
+    <br />
+    <br />
+    <!-- PROGRAM LIST HEADER -->
+    <div id="assessment_calendar_detail-title-nav" class="container">
+        <br />
+        <div class="col">
+            <div class="row">
+                <h1>
+                <i id="exclamation-icon" class="fas fa-exclamation"></i>
+                Committee Conflict
+                </h1>
+            </div>
+        </div>
+        <br />
+    </div>
+    
+    {% for key,value in conflict_date_dict.items %}
+    <nav id="assessment_calendar_detail-nav" class="navbar navbar-expand-lg">
+        <div class="col">
+            <div class="row">
+                <h4>{{key}}</h4>
+            </div>
+        </div>
+    </nav>
+        {% for faculty in value %}
+        <div class=bg-light>
+            <ul class="list-group">
+                <a class="list-group-item list-group-item-light bg-light" href="{% url 'program_detail' faculty.id %}">
+                    <h6 style="text-align: left; width:98%; display: inline-block;">
+                        {{faculty.name}}
+                    </h6>
+                    <h6 style="text-align: right; display: inline-block;">
+                        <i id="angle-right-icon" class="fas fa-angle-right"></i>
+                    </h6>
+                </a>
+            </ul>
+        </div>
+        {% endfor %}
+    
+    {% endfor %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <br /><br />
+    <div class="col">
+            <a class="btn col-md-1"><br /><b></b></a>
+            <a class="btn col-md-0.5"><br /><b></b></a>
+
+        <a id="MyProfile-btn" class="btn col-md-2" href="{% url 'all_program' %}">
+            <br /><b>My Profile<br />___________________</b></a>
+
+        <a class="btn col-md-0.5"><br /><b></b></a>
+
+        <a id="AvailableTime-btn" class="btn col-md-2" href="{% url 'all_program' %}">
+            <br /><b>Available Time<br />___________________</b></a>
+
+            <a class="btn col-md-0.5"><br /><b></b></a>
+
+        <a id="AssessmentSchedule-btn" class="btn col-md-2" href="{% url 'all_professor' %}">
+            <br /><b>AssessmentSchedule<br />___________________</b></a>
+
+            <a class="btn col-md-0.5"><br /><b></b></a>
+
+        <a id="Inbox-btn" class="btn col-md-2" href="{% url 'inbox' %}">
+            <br /><b>Inbox<br />___________________</b></a>
+
+            <a class="btn col-md-0.5"><br /><b></b></a>
+    </div>
+</div>
+
+{% endblock %}

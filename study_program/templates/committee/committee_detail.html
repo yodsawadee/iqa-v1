@@ -18,7 +18,7 @@
                 <!-- EDIT -->
                 <div class="ml-auto">
                     <form method="GET" action="{% url 'edit_committee_profile' committee_id %}">
-                        <button type="submit" class="btn btn-outline-success">Edit Profile</button>
+                        <button id="EditProfile-btn" type="submit" class="btn btn-outline-success">Edit Profile</button>
                     </form>
                 </div>
                 {% else %}
@@ -32,9 +32,6 @@
 
     <!-- BASIC INFO -->
     <div id="basic_info-container" class="container">
-        <!-- <div class="col text-center">
-                    <h1>PROFILE</h1>
-                </div> -->
         <div class="row">
             <div class="col-md-10">
                 <h5>code: {{ committee_detail.code }}</h5>

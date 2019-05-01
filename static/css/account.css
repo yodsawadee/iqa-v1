@@ -5,10 +5,12 @@
 #login-left {
     padding-top: 5%;
     background-color:#D7D6D7;
+    opacity: 0.7;
 }
 
 #login-right {
     background-color:#D7D6D7;
+    opacity: 0.7;
 }
 
 /* -------------------------------- Sign up -------------------------------- */
