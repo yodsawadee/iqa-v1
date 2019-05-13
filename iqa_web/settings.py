@@ -32,7 +32,6 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'crispy_forms',
-    'inbox.apps.InboxConfig',
     'accounts.apps.AccountsConfig',
     'study_program.apps.StudyProgramConfig',
     'grappelli',
@@ -43,8 +42,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-#pip install django-crispy-forms
+# pip install django-crispy-forms
+# pip install selenium
+# pip install coverage
+# pip install -U pytest
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -54,7 +57,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'iqa_web.urls'
@@ -82,33 +84,24 @@ WSGI_APPLICATION = 'iqa_web.wsgi.application'
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 # DATABASES = {
-#     'default': {
-#         #'ENGINE': 'django.db.backends.sqlite3',
-#         #'NAME': os.path.join(BASE_DIR, 'db.sqlite3.4'),
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'postgres',
-#         'USER':'postgres',
-#         'PASSWORD':'kraikrai',
-#         'HOST':'localhost',
-#         'PORT':5432
-#     }
+#    'default': {
+
+#        #'ENGINE': 'django.db.backends.sqlite3',
+#        #'NAME': os.path.join(BASE_DIR, 'db.sqlite3.4'),
+
+#        'ENGINE': 'django.db.backends.postgresql',
+#        'NAME': 'iqa4',
+#        'USER':'postgres',
+#        'PASSWORD':'kraikrai',
+#        'HOST':'localhost',
+#        'PORT':5432
+#    }
 # }
 
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3.3'),
-#     }
-# }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'iqa',
-#         'USER': 'postgres',
-#         'PASSWORD': '1234',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3.7'),
 #     }
 # }
 
@@ -122,7 +115,8 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-
+# user: admin
+# password: admin-password
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators

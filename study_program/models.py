@@ -152,7 +152,8 @@ class AUN(models.Model):
 
 class AvailableTime(models.Model):
     id = models.AutoField(primary_key=True)
-    appointment_date = models.DateField(default=datetime.datetime.now())
+    appointment_date = models.DateField(default=datetime.date.today)
+    #appointment_date = models.DateField(default=datetime.datetime.now())
     #appointment_time = models.TimeField(default=datetime.datetime.now())
 
     available_choice = (
